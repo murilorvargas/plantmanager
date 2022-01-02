@@ -41,8 +41,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: fonts.heading,
-    fontSize: 28,
-    lineHeight: 34,
+    fontSize: 32,
+    lineHeight: 38,
     textAlign: 'center',
     color: colors.heading,
     marginTop: 38,
