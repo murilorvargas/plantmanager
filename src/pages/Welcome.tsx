@@ -1,27 +1,30 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, SafeAreaView, StyleSheet, Dimensions } from 'react-native';
+import { Image, Text, TouchableOpacity, SafeAreaView, StyleSheet, Dimensions, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import wateringImg from '../assets/watering.png'
 
+import fonts from '../styles/fonts'
 import colors from '../styles/colors';
 
 export default function Welcome() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>
-        Gerencie {'\n'}
-        suas plantas {'\n'}
-        de forma fácil
-      </Text>
-      <Image source={wateringImg} style={styles.image} resizeMode="contain" />
-      <Text style={styles.subtitle}>
-        Não esqueça mais de regar suas plantas.
-        Nós cuidamos de lembrar você sempre que precisar.
-      </Text>
-      <TouchableOpacity style={styles.button} activeOpacity={0.7}>
-        <Feather name="chevron-right" style={styles.buttonIcon} />
-      </TouchableOpacity>
+      <View style={styles.wrapper}>
+        <Text style={styles.title}>
+          Gerencie {'\n'}
+          suas plantas de {'\n'}
+          forma fácil
+        </Text>
+        <Image source={wateringImg} style={styles.image} resizeMode="contain" />
+        <Text style={styles.subtitle}>
+          Não esqueça mais de regar suas plantas.
+          Nós cuidamos de lembrar você sempre que precisar.
+        </Text>
+        <TouchableOpacity style={styles.button} activeOpacity={0.7}>
+          <Feather name="chevron-right" style={styles.buttonIcon} />
+        </TouchableOpacity>
+      </View >
     </SafeAreaView>
   )
 }
@@ -29,12 +32,17 @@ export default function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  wrapper: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
+    paddingHorizontal: 20,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
+    fontFamily: fonts.heading,
+    fontSize: 28,
+    lineHeight: 34,
     textAlign: 'center',
     color: colors.heading,
     marginTop: 38,
@@ -43,6 +51,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').width * 0.7,
   },
   subtitle: {
+    fontFamily: fonts.text,
     textAlign: 'center',
     fontSize: 18,
     paddingHorizontal: 20,
