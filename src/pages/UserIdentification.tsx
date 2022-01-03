@@ -48,7 +48,7 @@ export default function UserIdentification() {
               onChangeText={handleInputChange}
             />
             <View style={styles.footer}>
-              <Button />
+              <Button title="Confirmar" disabled={!isFilled ? true : false} />
             </View>
           </View>
         </View>
