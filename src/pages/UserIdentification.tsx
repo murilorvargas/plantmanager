@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform, Image } from 'react-native';
 
 import Button from '../components/Button';
+
+import grinningFaceWithSmilingEyesImg from '../assets/grinning-face-with-smiling-eyes.png';
+import grinningFaceImg from '../assets/grinning-face.png';
 
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
@@ -31,7 +34,7 @@ export default function UserIdentification() {
         <View style={styles.content}>
           <View style={styles.form}>
             <View style={styles.header}>
-              <Text style={styles.emoji}>{!isFilled ? '😀' : '😄'}</Text>
+              <Image source={!isFilled ? grinningFaceImg : grinningFaceWithSmilingEyesImg} style={styles.emoji} resizeMode="contain" />
               <Text style={styles.title}>
                 Como podemos {'\n'}
                 chamar você?
@@ -75,7 +78,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emoji: {
-    fontSize: 44,
+    width: 36,
+    height: 36,
   },
   title: {
     marginTop: 24,
