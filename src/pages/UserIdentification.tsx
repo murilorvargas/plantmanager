@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, Platform, Image } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Image, Keyboard } from 'react-native';
 
 import Button from '../components/Button';
 
@@ -31,27 +31,29 @@ export default function UserIdentification() {
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <View style={styles.content}>
-          <View style={styles.form}>
-            <View style={styles.header}>
-              <Image source={!isFilled ? grinningFaceImg : grinningFaceWithSmilingEyesImg} style={styles.emoji} resizeMode="contain" />
-              <Text style={styles.title}>
-                Como podemos {'\n'}
-                chamar você?
-              </Text>
-            </View>
-            <TextInput
-              style={[styles.input, (isFocused || isFilled) && { borderColor: colors.green }]}
-              placeholder="Digite um nome"
-              onBlur={handleInputBlur}
-              onFocus={handleInputFocus}
-              onChangeText={handleInputChange}
-            />
-            <View style={styles.footer}>
-              <Button title="Confirmar" disabled={!isFilled ? true : false} />
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.content}>
+            <View style={styles.form}>
+              <View style={styles.header}>
+                <Image source={!isFilled ? grinningFaceImg : grinningFaceWithSmilingEyesImg} style={styles.emoji} resizeMode="contain" />
+                <Text style={styles.title}>
+                  Como podemos {'\n'}
+                  chamar você?
+                </Text>
+              </View>
+              <TextInput
+                style={[styles.input, (isFocused || isFilled) && { borderColor: colors.green }]}
+                placeholder="Digite um nome"
+                onBlur={handleInputBlur}
+                onFocus={handleInputFocus}
+                onChangeText={handleInputChange}
+              />
+              <View style={styles.footer}>
+                <Button title="Confirmar" disabled={!isFilled ? true : false} />
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   )
