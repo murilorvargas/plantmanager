@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import api from '../services/api';
 
@@ -30,6 +31,8 @@ interface PlantProps {
 }
 
 const PlantSelect: React.FC = () => {
+  const navigation = useNavigation();
+
   const [environment, setEnvironment] = useState<EnvironmentProps[]>([]);
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
@@ -75,6 +78,10 @@ const PlantSelect: React.FC = () => {
     setLoadingMore(true);
     setPage(oldValue => oldValue + 1);
     fetchPlants();
+  }
+
+  function handlePlantSelect(plant: PlantProps) {
+    navigation.navigate('PlantSave' as never, { plant } as never);
   }
 
   useEffect(() => {
@@ -127,7 +134,7 @@ const PlantSelect: React.FC = () => {
           onEndReachedThreshold={0.1}
           onEndReached={({ distanceFromEnd }) => handleFetchMore(distanceFromEnd)}
           renderItem={({ item }) => (
-            <PlantCardPrimary key={String(item.id)} data={item} />
+            <PlantCardPrimary key={String(item.id)} data={item} onPress={() => handlePlantSelect(item)} />
           )}
           ListFooterComponent={loadingMore ? <ActivityIndicator color={colors.green} /> : <></>}
         />
