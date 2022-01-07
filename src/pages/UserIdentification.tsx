@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, TouchableWithoutFeedback, Platform, Image, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Button from '../components/Button';
 
@@ -15,7 +16,7 @@ export default function UserIdentification() {
 
   const [isFocused, setIsFocused] = useState(false)
   const [isFilled, setIsFilled] = useState(false)
-  const [name, setName] = useState<string>()
+  const [name, setName] = useState<string>('')
 
   function handleInputBlur() {
     setIsFocused(false)
@@ -31,7 +32,9 @@ export default function UserIdentification() {
     setName(value)
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    await AsyncStorage.setItem('@plantmanager:user', name);
+
     navigation.navigate('Confirmation' as any);
   }
 
