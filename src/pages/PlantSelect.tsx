@@ -111,7 +111,8 @@ const PlantSelect: React.FC = () => {
       <View>
         <FlatList data={environment} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.environmentList} renderItem={({ item }) => (
           <EnvironmentButton
-            key={item.key} title={item.title}
+            key={item.key}
+            title={item.title}
             active={item.key === environmentSelected}
             onPress={() => handleEnvironmentSelected(item.key)}
             activeOpacity={1}
@@ -127,7 +128,7 @@ const PlantSelect: React.FC = () => {
           onEndReachedThreshold={0.1}
           onEndReached={({ distanceFromEnd }) => handleFetchMore(distanceFromEnd)}
           renderItem={({ item }) => (
-            <PlantCardPrimary data={item} />
+            <PlantCardPrimary key={String(item.id)} data={item} />
           )}
           ListFooterComponent={loadingMore ? <ActivityIndicator color={colors.green} /> : <></>}
         />
