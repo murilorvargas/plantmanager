@@ -21,7 +21,7 @@ interface StoragePlantProps {
   }
 }
 
-export async function plantSave(plant: PlantProps): Promise<void> {
+export async function savePlant(plant: PlantProps): Promise<void> {
   try {
     const data = await AsyncStorage.getItem('@plantmanager:plants')
     const oldPlants = data ? (JSON.parse(data) as StoragePlantProps) : {}
@@ -42,7 +42,7 @@ export async function plantSave(plant: PlantProps): Promise<void> {
   }
 }
 
-export async function plantLoadP(): Promise<PlantProps[]> {
+export async function loadPlant(): Promise<PlantProps[]> {
   try {
     const data = await AsyncStorage.getItem('@plantmanager:plants')
     const plants = data ? (JSON.parse(data) as StoragePlantProps) : {}

@@ -7,7 +7,7 @@ import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { format, isBefore } from 'date-fns';
 import { useNavigation } from '@react-navigation/native';
 
-import { PlantProps, plantSave } from '../libs/storage';
+import { PlantProps, savePlant } from '../libs/storage';
 import Button from '../components/Button';
 
 import waterDropImg from '../assets/waterdrop.png';
@@ -49,7 +49,7 @@ const PlantSave: React.FC = () => {
 
   async function handleSave() {
     try {
-      await plantSave({
+      await savePlant({
         ...plant,
         dateTimeNotification: selectedDateTime
       })
