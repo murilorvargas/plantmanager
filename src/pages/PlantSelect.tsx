@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import api from '../services/api';
 
+import { PlantProps } from '../libs/storage';
 import Header from '../components/Header';
 import EnvironmentButton from '../components/EnvironmentButton';
 import Load from '../components/Load';
@@ -15,19 +16,6 @@ import colors from '../styles/colors';
 interface EnvironmentProps {
   key: string;
   title: string;
-}
-
-interface PlantProps {
-  id: number;
-  name: string;
-  about: string;
-  water_tips: string;
-  photo: string;
-  environments: string[],
-  frequency: {
-    times: number;
-    repeat_every: string;
-  }
 }
 
 const PlantSelect: React.FC = () => {
