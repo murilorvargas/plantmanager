@@ -1,12 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { SvgFromUri } from 'react-native-svg';
 
 import fonts from '../styles/fonts';
 import colors from '../styles/colors';
 
-interface PlantCardPrimaryProps extends RectButtonProps {
+interface PlantCardPrimaryProps extends TouchableOpacityProps {
   data: {
     name: string;
     photo: string;
@@ -15,10 +14,10 @@ interface PlantCardPrimaryProps extends RectButtonProps {
 
 const PlantCardPrimary: React.FC<PlantCardPrimaryProps> = ({ data, ...rest }) => {
   return (
-    <RectButton style={styles.container} {...rest}>
+    <TouchableOpacity style={styles.container} {...rest}>
       <SvgFromUri uri={data.photo} width={70} height={70} />
       <Text style={styles.text}>{data.name}</Text>
-    </RectButton>
+    </TouchableOpacity>
   );
 }
 
