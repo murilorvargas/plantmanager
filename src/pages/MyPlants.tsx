@@ -18,6 +18,30 @@ const MyPlants: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [nextWaterd, setNextWaterd] = useState('');
 
+  function handleRemove(plant: PlantProps) {
+    Alert.alert('Remover', `Deseja mesmo deletar sua ${plant.name}?`, [
+      {
+        text: 'Cancelar',
+        style: 'cancel'
+      },
+      {
+        text: 'Deletar',
+        onPress: async () => {
+          try {
+            await deletePlant(plant.id);
+
+            setMyPlants(oldData => (
+              oldData.filter(item => item.id !== plant.id)
+            ));
+
+          } catch (error) {
+            Alert.alert('Não foi possível deletar a sua planta!')
+          }
+        }
+      }
+    ])
+  }
+
   useEffect(() => {
     async function loadStorageData() {
       const plantsStoraged = await loadPlant();
@@ -62,7 +86,7 @@ const MyPlants: React.FC = () => {
           data={myPlants}
           keyExtractor={(item) => String(item.id)}
           renderItem={({ item }) => (
-            <PlantCardSecondary data={item} />
+            <PlantCardSecondary data={item} handleRemove={() => handleRemove(item)} />
           )}
           showsVerticalScrollIndicator={false}
         />
