@@ -6,6 +6,7 @@ import { pt } from 'date-fns/locale'
 import { loadPlant, PlantProps } from '../libs/storage';
 import Header from '../components/Header';
 import PlantCardSecondary from '../components/PlantCardSecondary';
+import Load from '../components/Load';
 
 import waterDropImg from '../assets/waterdrop.png';
 
@@ -34,6 +35,10 @@ const MyPlants: React.FC = () => {
 
     loadStorageData();
   }, [])
+
+  if (loading) {
+    return <Load />;
+  }
 
   return (
     <View style={styles.container}>
