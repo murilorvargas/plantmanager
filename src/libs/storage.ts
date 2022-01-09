@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { format } from 'date-fns'
 
 export interface PlantProps {
-  id: number;
+  id: string;
   name: string;
   about: string;
   water_tips: string;
