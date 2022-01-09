@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { formatDistance } from 'date-fns';
 import { pt } from 'date-fns/locale'
 
-import { loadPlant, PlantProps } from '../libs/storage';
+import { deletePlant, loadPlant, PlantProps } from '../libs/storage';
 import Header from '../components/Header';
 import PlantCardSecondary from '../components/PlantCardSecondary';
 import Load from '../components/Load';
@@ -22,19 +22,23 @@ const MyPlants: React.FC = () => {
     async function loadStorageData() {
       const plantsStoraged = await loadPlant();
 
-      const nextTime = formatDistance(
-        new Date(plantsStoraged[0].dateTimeNotification).getTime(),
-        new Date().getTime(),
-        { locale: pt }
-      )
+      if (plantsStoraged.length) {
+        const nextTime = formatDistance(
+          new Date(plantsStoraged[0].dateTimeNotification).getTime(),
+          new Date().getTime(),
+          { locale: pt }
+        )
 
-      setNextWaterd(`Regue sua ${plantsStoraged[0].name} daqui a ${nextTime}.`);
-      setMyPlants(plantsStoraged);
-      setLoading(false);
+        setNextWaterd(`Regue sua ${plantsStoraged[0].name} daqui a ${nextTime}.`);
+        setMyPlants(plantsStoraged);
+        setLoading(false);
+      } else {
+        setLoading(true)
+      }
     }
 
     loadStorageData();
-  }, [])
+  }, [myPlants])
 
   if (loading) {
     return <Load />;
