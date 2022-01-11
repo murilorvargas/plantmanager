@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "server": "json-server server.json --host 192.168.10.50 --port 3333"
+    "server": "json-server server.json --host 192.168.10.52 --port 3333"
   },
   "dependencies": {
     "@expo-google-fonts/jost": "^0.2.0",
